@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container">
+  <div class="task-detail card">
+    <h2 class="task-title">{{ task_detail.title }}</h2>
+    <hr>
+    <p class="task-desc">{{ task_detail.desc }}</p>
+
+    <div class="btn-group">
+      <a href="{% url 'home' %}" class="btn secondary">Back</a>
+      <a href="{% url 'update' task_detail.id %}" class="btn primary">Edit</a>
+      <a href="{% url 'delete_' task_detail.id %}" class="btn cancel">Delete</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+

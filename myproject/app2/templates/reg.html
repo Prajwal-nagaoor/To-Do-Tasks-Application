@@ -1,0 +1,62 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="register-container">
+  <!-- Left Illustration / Gradient -->
+  <div class="register-left">
+    <div class="register-banner">
+      <h1>Welcome to ToDo App</h1>
+      <p>Create your account and start organizing your tasks efficiently!</p>
+    </div>
+  </div>
+
+  <!-- Registration Form -->
+  <div class="register-right">
+    <div class="register-card">
+      <h2>Create Account</h2>
+      <form action="" method="POST" class="register-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <input type="text" name="first_name" id="first_name" required>
+          <label for="first_name">First Name</label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="last_name" id="last_name" required>
+          <label for="last_name">Last Name</label>
+        </div>
+
+        <div class="form-group">
+          <input type="email" name="email" id="email" required>
+          <label for="email">Email</label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="username" id="username" required>
+          <label for="username">Username</label>
+          {% if username_exist %}
+          <p class="error-msg">This username already exists!</p>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="password" id="password" required>
+          <label for="password">Password</label>
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="conf_pass" id="conf_pass" required>
+          <label for="conf_pass">Confirm Password</label>
+          {% if conf_pass %}
+          <p class="error-msg">Passwords do not match!</p>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn primary btn-submit">Register</button>
+
+        <p class="login-link">Already have an account? <a href="{% url 'login_' %}">Login</a></p>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

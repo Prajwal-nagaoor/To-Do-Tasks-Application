@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="reset-page">
+  <div class="reset-wrapper">
+    <div class="reset-card">
+      <h2 class="reset-title">Reset Password 🔐</h2>
+
+      {% if status %}
+        <div class="error-message">
+          ⚠️ The entered username or password did not match. Please try again.
+        </div>
+      {% endif %}
+
+      <!-- STEP 1: ENTER OLD PASSWORD -->
+      {% if not newpass %}
+      <form action="" method="POST" class="reset-form">
+        {% csrf_token %}
+        <input type="hidden" name="step" value="old_pass">
+
+        {% if oldpass %}
+          <h5 style="color:red;">Entered old password is wrong ❌</h5>
+        {% endif %}
+
+        <div class="input-box">
+          <input type="password" name="old_pass" required>
+          <label>Old Password</label>
+        </div>
+
+        <button type="submit" class="reset-btn">Verify Password</button>
+      </form>
+      {% endif %}
+
+
+      <!-- STEP 2: ENTER NEW PASSWORD (Shown only if old password is correct) -->
+      {% if newpass %}
+      <form action="" method="POST" class="reset-form">
+        {% csrf_token %}
+        <input type="hidden" name="step" value="new_pass">
+
+        <div class="input-box">
+          <input type="password" name="new_pass" required>
+          <label>New Password</label>
+        </div>
+
+        <button type="submit" class="reset-btn">Update Password</button>
+      </form>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

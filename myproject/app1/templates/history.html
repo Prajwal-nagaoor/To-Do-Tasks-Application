@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+{% block content %}
+<main class="container">
+    <h2>List of Tasks</h2>
+    <center>
+        <div>
+        <a href="{% url 'clear_all' %}"  class="btn cancel">Clear All</a>
+        <a href="{% url 'restore_all' %}" class="btn secondary">Restore All</a>
+    </div>
+    </center><br>
+    {% if task_details %}
+        <div class="task-list">
+            {% for task in task_details %}
+                {% if task.is_del == 1 %}
+                    <div class="task-card">
+                        <h3>Title: {{ task.title }}</h3>
+                        <p>Description: {{ task.desc |truncatewords:5}}</p>
+                        <div style="display: flex; justify-content: space-around;">
+                    <a href="{% url 'details' task.id %}" class="btn primary">Details</a>
+                    <a href="{% url 'restore' task.id %}" class="btn secondary">Restore</a>
+                    <a href="{% url 'delete_hist' task.id %}" class="btn cancel">Delete</a>
+                    </div>
+                    </div>
+                {% endif %}
+                
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No tasks available. Please add some tasks.</p>
+    {% endif %}
+</main>
+{% endblock content %}

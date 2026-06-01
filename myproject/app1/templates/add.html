@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% block content %}
+<main class="container">
+    <div class="card">
+        <h2>Add Task</h2>
+        <hr>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if status %}
+            <p style="color: green;">{{ status }}</p>
+            {% endif %}
+            <label for="task_name">Task Name</label>
+            <input type="text" id="task_name" name="task_name" placeholder="Enter Task Name" required>
+
+            <label for="task_desc">Task Description</label>
+            <textarea id="task_desc" name="task_desc" placeholder="Enter Task Description" rows="4" required></textarea>
+
+            <div class="btn-group">
+                <button type="submit" name="action" value="save" class="btn primary">Save</button>
+                <button type="submit" name="action" value="save" class="btn secondary">Save & Add More</button>
+                <a href="" class="btn cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock content %}

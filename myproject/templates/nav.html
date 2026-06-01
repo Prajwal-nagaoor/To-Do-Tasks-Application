@@ -1,0 +1,47 @@
+<nav>
+    <div class="logo">
+        <h2>ToDo</h2>
+    </div>
+    <div class="links">
+        
+        {% if request.user.is_authenticated %}
+            {% if profile %}
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'add' %}">Add Task</a>
+                <a href="{% url 'comppleted' %}">Completed Task</a>
+                <a href="{% url 'history' %}">History</a>
+                <a href="{% url 'profile' %}">Profile ({{ request.user }})</a>
+                <a href="{% url 'logout' %}">Logout</a>
+                <a href="">About Us</a>
+                <a href="">Support</a>
+            {% elif add_task %}
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'add' %}">Add Task</a>
+                <a href="{% url 'profile' %}">Profile ({{ request.user }})</a>
+                <a href="">About Us</a>
+                <a href="">Support</a>
+            {% else %}
+                <div class="custom-search-box">
+                    <form action="">
+                        <input type="search" placeholder="Search Task Here" name="q">
+                    </form>
+                </div>
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'add' %}">Add Task</a>
+                <a href="{% url 'comppleted' %}">Completed Task</a>
+                <a href="{% url 'history' %}">History</a>
+                <a href="{% url 'profile' %}">Profile ({{ request.user }})</a>
+                <a href="{% url 'logout' %}">Logout</a>
+                <a href="">About Us</a>
+                <a href="">Support</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login_' %}">Login</a>
+            <a href="{% url 'reg' %}">Register</a>
+            <a href="">About Us</a>
+            <a href="">Support</a>
+        {% endif %}
+
+
+    </div>
+</nav>

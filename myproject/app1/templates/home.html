@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block content %}
+<main class="container">
+    <h2>List of Tasks</h2>
+
+    {% if task_details %}
+        <div class="task-list">
+            {% for task in task_details %}
+                {% if task.is_del == 0 and task.completed == 0 %} 
+                    <div class="task-card">
+                        <h3>Title: {{ task.title }}</h3>
+                        <p>Description: {{ task.desc |truncatewords:5}}</p>
+                        <div style="display: flex; justify-content: space-around;">
+                    <a href="{% url 'details' task.id %}" class="btn primary">Details</a>
+                    <a href="{% url 'update' task.id %}" class="btn secondary">Update</a>
+                    <a href="{% url 'completed' task.id %}" class="btn primary">Completed</a>
+                    <a href="{% url 'delete_' task.id %}" class="btn cancel">Delete</a>
+                    </div>
+                    </div>
+                {% endif %}
+                
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No tasks available. Please add some tasks.</p>
+    {% endif %}
+</main>
+{% endblock content %}
